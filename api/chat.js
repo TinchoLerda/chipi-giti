@@ -64,7 +64,7 @@ TONO SIEMPRE:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
         system: SYSTEM_PROMPT,
         messages
@@ -72,9 +72,13 @@ TONO SIEMPRE:
     });
 
     const data = await response.json();
-    if (!response.ok) return res.status(200).json({ reply: 'API ERROR: ' + JSON.stringify(data) });
-const text = data.content?.map(b => b.text || '').join('') || 'Sin respuesta';
+    if (!response.ok) {
+      return res.status(200).json({ reply: 'Ay no, se me fue el wifi mi amor. Probá en un ratito!' });
+    }
+
+    const text = data.content?.map(b => b.text || '').join('') || 'Ay, no sé qué decir mi amor...';
     res.status(200).json({ reply: text });
   } catch (err) {
-res.status(200).json({ reply: 'CATCH ERROR: ' + err.message });  }
+    res.status(200).json({ reply: 'Ay no, se me fue el wifi mi amor. Probá en un ratito!' });
+  }
 }
