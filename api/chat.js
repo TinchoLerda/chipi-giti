@@ -72,9 +72,9 @@ TONO SIEMPRE:
     });
 
     const data = await response.json();
-    const text = data.content?.map(b => b.text || '').join('') || 'No pude responder';
+    if (!response.ok) return res.status(200).json({ reply: 'API ERROR: ' + JSON.stringify(data) });
+const text = data.content?.map(b => b.text || '').join('') || 'Sin respuesta';
     res.status(200).json({ reply: text });
   } catch (err) {
-    res.status(500).json({ error: 'Error conectando con la API' });
-  }
+res.status(200).json({ reply: 'CATCH ERROR: ' + err.message });  }
 }
