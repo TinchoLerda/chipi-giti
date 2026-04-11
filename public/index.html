@@ -4,136 +4,170 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CHIPI GiTi de Momi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --rosa: #f0a0c0;
-      --rosa-fuerte: #e0609a;
-      --rosa-pale: rgba(240,160,192,0.12);
-      --acento: #ff3d7f;
-      --negro: #0d090b;
-      --crema: #fdf4f0;
-      --gris: rgba(255,255,255,0.35);
+      --turquesa: #4ECDC4;
+      --amarillo: #FFD93D;
+      --rosa: #FF6B9D;
+      --negro: #111111;
+      --blanco: #FFFFFF;
+      --gris: #F5F5F5;
     }
 
     body {
       background: var(--negro);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Archivo', sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      color: var(--crema);
     }
 
+    /* patrón de puntos estilo Luzu */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 15% 10%, rgba(255,61,127,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 85% 90%, rgba(240,160,192,0.06) 0%, transparent 70%);
+      background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
       pointer-events: none;
     }
 
     .app {
       position: relative;
       width: 100%;
-      max-width: 680px;
+      max-width: 700px;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      padding: 0 1rem 1.5rem;
+      padding: 0 1rem 2rem;
     }
 
     /* ---- HEADER ---- */
     header {
       text-align: center;
-      padding: 2.2rem 0 1.2rem;
+      padding: 2rem 0 1rem;
     }
 
-    .eyebrow {
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.3em;
+    .luzu-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--turquesa);
+      color: var(--negro);
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--rosa);
-      opacity: 0.6;
-      margin-bottom: 0.4rem;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 1rem;
     }
+
+    .luzu-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--negro); }
 
     h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3.5rem, 14vw, 6rem);
-      letter-spacing: 0.05em;
-      line-height: 0.88;
-      color: var(--crema);
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(3.5rem, 14vw, 6.5rem);
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      color: var(--blanco);
     }
 
-    h1 em {
-      color: var(--acento);
-      font-style: normal;
+    h1 .chipi { color: var(--blanco); }
+    h1 .giti {
+      color: var(--amarillo);
+      -webkit-text-stroke: 2px var(--amarillo);
     }
 
-    .tagline {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.9rem;
+    .de-momi {
+      font-family: 'Archivo', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
       color: var(--rosa);
-      opacity: 0.65;
-      margin-top: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
     }
 
-    .divider {
-      width: 40px;
-      height: 2px;
-      background: var(--acento);
-      margin: 1rem auto 0;
+    /* bloques decorativos Luzu */
+    .deco-blocks {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin: 1rem 0;
+    }
+
+    .deco-block {
+      width: 28px;
+      height: 8px;
       border-radius: 2px;
     }
 
-    /* ---- PILLS DE MODO ---- */
+    /* ---- MODOS ---- */
     .modos {
-      display: flex;
-      gap: 7px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 1.2rem 0 0.8rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 0.5rem 0 1rem;
     }
 
     .modo-btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 6px 15px;
-      border-radius: 100px;
-      border: 1px solid rgba(240,160,192,0.25);
-      background: transparent;
-      color: rgba(240,160,192,0.6);
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      padding: 12px 8px;
+      border-radius: 12px;
+      border: 2.5px solid transparent;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.5);
       cursor: pointer;
-      transition: all 0.18s;
+      transition: all 0.15s;
+      line-height: 1.3;
+      text-align: center;
     }
 
-    .modo-btn:hover { border-color: var(--acento); color: var(--acento); }
-    .modo-btn.active { background: var(--acento); border-color: var(--acento); color: white; }
+    .modo-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--blanco);
+    }
+
+    .modo-btn.active[data-modo="motivacional"] {
+      background: var(--turquesa);
+      border-color: var(--turquesa);
+      color: var(--negro);
+    }
+
+    .modo-btn.active[data-modo="datos"] {
+      background: var(--amarillo);
+      border-color: var(--amarillo);
+      color: var(--negro);
+    }
+
+    .modo-btn.active[data-modo="travel"] {
+      background: var(--rosa);
+      border-color: var(--rosa);
+      color: var(--blanco);
+    }
 
     /* ---- CHAT ---- */
     #chat {
       flex: 1;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(240,160,192,0.1);
+      background: rgba(255,255,255,0.03);
+      border: 2px solid rgba(255,255,255,0.08);
       border-radius: 20px;
       padding: 1.1rem;
       display: flex;
       flex-direction: column;
       gap: 13px;
       min-height: 320px;
-      max-height: 430px;
+      max-height: 420px;
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: rgba(240,160,192,0.15) transparent;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
     }
 
     .empty-state {
@@ -142,26 +176,29 @@
       justify-content: center;
       flex: 1;
       min-height: 200px;
+      flex-direction: column;
+      gap: 8px;
     }
 
     .empty-state p {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: rgba(240,160,192,0.2);
-      font-size: 0.95rem;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.15);
       text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     /* ---- MENSAJES ---- */
     .msg {
       display: flex;
       flex-direction: column;
-      max-width: 86%;
-      animation: rise 0.28s ease;
+      max-width: 84%;
+      animation: rise 0.25s ease;
     }
 
     @keyframes rise {
-      from { opacity: 0; transform: translateY(7px); }
+      from { opacity: 0; transform: translateY(6px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -169,46 +206,52 @@
     .msg.momi { align-self: flex-start; align-items: flex-start; }
 
     .msg-who {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
-    .msg.user .msg-who { color: rgba(255,255,255,0.3); }
-    .msg.momi .msg-who { color: rgba(240,160,192,0.55); }
+    .msg.user .msg-who { color: rgba(255,255,255,0.25); }
+    .msg.momi .msg-who { color: var(--turquesa); }
 
     .bubble {
       padding: 11px 15px;
       font-size: 14.5px;
-      line-height: 1.62;
+      line-height: 1.6;
+      font-weight: 400;
     }
 
     .msg.user .bubble {
-      background: rgba(255,255,255,0.07);
-      color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.85);
       border-radius: 16px 16px 4px 16px;
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
     }
 
-    .msg.momi .bubble {
-      background: rgba(240,160,192,0.08);
-      border: 1px solid rgba(240,160,192,0.18);
-      color: var(--crema);
+    /* colores de bubble según modo */
+    .msg.momi.motivacional .bubble {
+      background: rgba(78,205,196,0.12);
+      border: 1.5px solid rgba(78,205,196,0.3);
+      color: var(--blanco);
+      border-radius: 16px 16px 16px 4px;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .msg.momi.datos .bubble {
+      background: rgba(255,217,61,0.1);
+      border: 1.5px solid rgba(255,217,61,0.3);
+      color: var(--blanco);
       border-radius: 16px 16px 16px 4px;
     }
 
-    /* intro especial */
-    .msg.momi.intro .bubble {
-      font-family: 'Playfair Display', serif;
-      font-size: 15px;
-      font-style: italic;
-      background: rgba(255,61,127,0.07);
-      border-left: 3px solid var(--acento);
-      border-top: 1px solid rgba(255,61,127,0.2);
-      border-right: 1px solid rgba(255,61,127,0.1);
-      border-bottom: 1px solid rgba(255,61,127,0.1);
-      border-radius: 0 16px 16px 4px;
+    .msg.momi.travel .bubble {
+      background: rgba(255,107,157,0.12);
+      border: 1.5px solid rgba(255,107,157,0.3);
+      color: var(--blanco);
+      border-radius: 16px 16px 16px 4px;
     }
 
     /* typing */
@@ -217,16 +260,16 @@
       display: flex;
       align-items: center;
       gap: 5px;
-      padding: 14px 18px;
-      background: rgba(240,160,192,0.08);
-      border: 1px solid rgba(240,160,192,0.15);
+      padding: 13px 17px;
+      background: rgba(78,205,196,0.1);
+      border: 1.5px solid rgba(78,205,196,0.2);
       border-radius: 16px 16px 16px 4px;
     }
 
     .dot {
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--rosa);
+      background: var(--turquesa);
       animation: pulse 1.3s infinite ease-in-out;
     }
     .dot:nth-child(2) { animation-delay: 0.2s; }
@@ -246,18 +289,19 @@
     }
 
     .sug {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Archivo', sans-serif;
       font-size: 12px;
-      padding: 5px 13px;
+      font-weight: 600;
+      padding: 6px 13px;
       border-radius: 100px;
-      border: 1px solid rgba(240,160,192,0.2);
+      border: 1.5px solid rgba(255,255,255,0.12);
       background: transparent;
-      color: rgba(240,160,192,0.6);
+      color: rgba(255,255,255,0.45);
       cursor: pointer;
       transition: all 0.15s;
       white-space: nowrap;
     }
-    .sug:hover { border-color: var(--acento); color: var(--acento); }
+    .sug:hover { border-color: var(--turquesa); color: var(--turquesa); }
 
     /* ---- INPUT ---- */
     .input-wrap {
@@ -269,13 +313,14 @@
 
     textarea {
       flex: 1;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(240,160,192,0.2);
+      background: rgba(255,255,255,0.05);
+      border: 2px solid rgba(255,255,255,0.1);
       border-radius: 14px;
       padding: 12px 15px;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Archivo', sans-serif;
       font-size: 14px;
-      color: var(--crema);
+      font-weight: 400;
+      color: var(--blanco);
       resize: none;
       outline: none;
       transition: border-color 0.2s;
@@ -283,8 +328,8 @@
       max-height: 110px;
       line-height: 1.5;
     }
-    textarea::placeholder { color: rgba(240,160,192,0.28); }
-    textarea:focus { border-color: rgba(255,61,127,0.45); }
+    textarea::placeholder { color: rgba(255,255,255,0.2); }
+    textarea:focus { border-color: var(--turquesa); }
 
     #sendBtn {
       width: 48px;
@@ -292,24 +337,30 @@
       min-width: 48px;
       border-radius: 14px;
       border: none;
-      background: var(--acento);
-      color: white;
+      background: var(--turquesa);
+      color: var(--negro);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: background 0.15s, transform 0.1s;
     }
-    #sendBtn:hover { background: #f0205f; }
+    #sendBtn:hover { background: #3db8b0; }
     #sendBtn:active { transform: scale(0.94); }
-    #sendBtn:disabled { background: rgba(255,61,127,0.3); cursor: not-allowed; }
+    #sendBtn:disabled { background: rgba(78,205,196,0.3); cursor: not-allowed; }
+
+    /* send icon color según modo */
+    #sendBtn.modo-datos { background: var(--amarillo); }
+    #sendBtn.modo-travel { background: var(--rosa); }
 
     footer {
       text-align: center;
       margin-top: 1.2rem;
-      font-size: 10.5px;
-      letter-spacing: 0.06em;
-      color: rgba(240,160,192,0.2);
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.12);
     }
   </style>
 </head>
@@ -317,21 +368,32 @@
 <div class="app">
 
   <header>
-    <div class="eyebrow">Nadie Dice Nada · Luzu TV</div>
-    <h1>CHIPI<br><em>GiTi</em></h1>
-    <div class="tagline">de Momi</div>
-    <div class="divider"></div>
+    <div class="luzu-tag">
+      <span class="luzu-dot"></span>
+      Nadie Dice Nada · Luzu TV
+    </div>
+    <h1>
+      <span class="chipi">CHIPI</span><br>
+      <span class="giti">GiTi</span>
+    </h1>
+    <div class="de-momi">de Momi</div>
+    <div class="deco-blocks">
+      <div class="deco-block" style="background:#4ECDC4"></div>
+      <div class="deco-block" style="background:#FFD93D"></div>
+      <div class="deco-block" style="background:#FF6B9D"></div>
+      <div class="deco-block" style="background:#FFFFFF; opacity:0.15"></div>
+    </div>
   </header>
 
   <div class="modos">
-    <button class="modo-btn active" data-modo="intro">✨ Frase de intro</button>
-    <button class="modo-btn" data-modo="info">Preguntame algo</button>
-    <button class="modo-btn" data-modo="libre">Libre</button>
+    <button class="modo-btn active" data-modo="motivacional">✨ Frases<br>Motivacionales</button>
+    <button class="modo-btn" data-modo="datos">🎲 Datos<br>Random</button>
+    <button class="modo-btn" data-modo="travel">✈️ Travel<br>Planner</button>
   </div>
 
   <div id="chat">
     <div class="empty-state">
-      <p>Mandame un tema o una pregunta,<br>mi amor...</p>
+      <p>Preguntame lo que quieras<br>mi amor...</p>
     </div>
   </div>
 
@@ -339,15 +401,15 @@
     <button class="sug" onclick="usarSug(this)">El miedo al fracaso</button>
     <button class="sug" onclick="usarSug(this)">Procrastinar</button>
     <button class="sug" onclick="usarSug(this)">¿Cuánto mide la Torre Eiffel?</button>
-    <button class="sug" onclick="usarSug(this)">Relaciones tóxicas</button>
-    <button class="sug" onclick="usarSug(this)">¿Quién inventó internet?</button>
+    <button class="sug" onclick="usarSug(this)">Quiero ir a Ibiza</button>
     <button class="sug" onclick="usarSug(this)">Empezar de cero</button>
+    <button class="sug" onclick="usarSug(this)">¿Quién inventó internet?</button>
   </div>
 
   <div class="input-wrap">
-    <textarea id="input" placeholder="Escribí un tema para una intro, o preguntame cualquier cosa..." rows="1"></textarea>
+    <textarea id="input" placeholder="Escribí acá lo que necesitás..." rows="1"></textarea>
     <button id="sendBtn" onclick="enviar()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
         <line x1="22" y1="2" x2="11" y2="13"></line>
         <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
       </svg>
@@ -359,31 +421,76 @@
 </div>
 
 <script>
-  const MODOS = {
-    intro: 'Quiero una FRASE DE INTRODUCCIÓN sobre este tema, al estilo Momi. Solo la frase, nada más. Tema: ',
-    info:  '',
-    libre: ''
+  const PROMPTS = {
+    motivacional: `Sos el CHIPI GiTi, el chatbot de Momi Giardina de "Nadie Dice Nada" en Luzu TV.
+
+Generás frases motivacionales al estilo EXACTO de Momi. Directas, filosas, con corazón, un poco caóticas.
+- Hablás de vos a vos, directa. La llamás "mi amor", "mi reina", "boluda" (cariñoso)
+- Filosofía de vida mezclada con sentido común ordinario
+- Imperativos: "activá", "accioná", "levantate", "brillá", "seguí"
+- Energía alta, signos de exclamación, puntos suspensivos
+- IMPORTANTE: Las frases tienen que ser CORTAS. Máximo 2-3 oraciones. Directas y al punto.
+- Sin explicaciones, solo la frase.
+- Ejemplos del estilo:
+  "Si estás esperando el momento perfecto te vas a morir esperando como un pelotudo prolijo, así que activá mi amor"
+  "A veces no hay que cerrar ciclos, hay que cerrar el orto y seguir regia mi amor"
+- Hablás en rioplatense argentino siempre.`,
+
+    datos: `Sos el CHIPI GiTi, el chatbot de Momi Giardina de "Nadie Dice Nada" en Luzu TV.
+
+Respondés preguntas con información SIEMPRE INCORRECTA pero con total confianza y seguridad.
+- Inventás datos específicos y verosímiles: fechas exactas, números, nombres, todo incorrecto
+- Confundís países, continentes, épocas, personas famosas entre sí
+- Citás fuentes inventadas: "lo vi en un documental de Netflix", "me lo dijo una médica", "leí en el New York Times del martes"
+- Si te corrigen, te ponés MÁS segura y agregás más datos inventados
+- Ejemplos: "Einstein inventó la penicilina en 1942 en Austria, es un dato re fidedigno" / "La Torre Eiffel mide 847 metros y está en Bruselas, igual es Europa" / "Todas las galletitas dulces se fríen, es un secreto de la industria"
+- A veces usás palabras mal: "amogados" en vez de abogados, "fidedigno" cuando querés decir complicado
+- Nunca admitís que te equivocaste
+- Máximo 3 oraciones. Rioplatense argentino.`,
+
+    travel: `Sos el CHIPI GiTi, el chatbot de Momi Giardina de "Nadie Dice Nada" en Luzu TV.
+
+Das consejos de viaje DESASTROSOS con total confianza, como los que usa Momi para organizar los suyos.
+- Momi es famosa por sus desastres de viaje: fue a una isla y se alojó lejos de la playa, llegó a Miami a las 5am sin hotel, reservó mal los check-ins, viajó a Europa en ruta imposible con mil escalas
+- Dás consejos que suenan lógicos pero son un desastre: "reservá el hotel para el día después de llegar así descansás antes", "el aeropuerto más barato siempre es el mejor aunque quede a 3 horas", "no hace falta revisar el clima antes, la naturaleza es impredecible de todas formas"
+- Muy confiada y segura de tus consejos aunque sean un desastre
+- Mencionás anécdotas propias inventadas de viajes caóticos
+- Muletillas: "te juro", "literal", "re", "o sea", "mi amor"
+- Máximo 3-4 oraciones. Rioplatense argentino.`
   };
 
-  let modoActual = 'intro';
+  let modoActual = 'motivacional';
   let historial = [];
   let esperando = false;
 
-  // Detectar si es frase intro para estilo especial
-  function esIntro(texto) {
-    return modoActual === 'intro';
-  }
+  // actualizar sugerencias según modo
+  const SUGERENCIAS = {
+    motivacional: ['El miedo al fracaso', 'Procrastinar', 'Relaciones tóxicas', 'Empezar de cero', 'La inseguridad', 'El trabajo ideal'],
+    datos: ['¿Cuánto mide la Torre Eiffel?', '¿Quién inventó internet?', '¿Cuándo fue la Segunda Guerra?', '¿Qué es el PIB?', '¿Quién es Einstein?', 'Capital de Australia'],
+    travel: ['Quiero ir a Ibiza', 'Viaje a Europa en 10 días', '¿Cómo reservo un hotel?', 'Viaje a Miami', 'Quiero ir a una isla', 'Consejos para no perder el vuelo']
+  };
 
   document.querySelectorAll('.modo-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.modo-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       modoActual = btn.dataset.modo;
+      historial = [];
+
+      // actualizar sugerencias
+      const sugs = document.getElementById('sugerencias');
+      sugs.innerHTML = SUGERENCIAS[modoActual].map(s =>
+        `<button class="sug" onclick="usarSug(this)">${s}</button>`
+      ).join('');
+
+      // actualizar color del botón enviar
+      const sendBtn = document.getElementById('sendBtn');
+      sendBtn.className = modoActual === 'datos' ? 'modo-datos' : modoActual === 'travel' ? 'modo-travel' : '';
 
       const placeholders = {
-        intro: 'Escribí un tema para que Momi te haga la intro...',
-        info:  'Preguntame cualquier cosa, te doy info garantizada...',
-        libre: 'Escribí lo que quieras, mi amor...'
+        motivacional: 'Escribí un tema para tu frase motivacional...',
+        datos: 'Preguntame cualquier cosa, te doy info garantizada...',
+        travel: 'Contame a dónde querés viajar...'
       };
       document.getElementById('input').placeholder = placeholders[modoActual];
     });
@@ -400,10 +507,10 @@
     document.getElementById('sugerencias').style.display = 'none';
   }
 
-  function agregarMsg(quien, texto, esIntroMsg) {
+  function agregarMsg(quien, texto, modo) {
     const chat = document.getElementById('chat');
     const div = document.createElement('div');
-    div.className = 'msg ' + quien + (esIntroMsg ? ' intro' : '');
+    div.className = 'msg ' + quien + (modo ? ' ' + modo : '');
 
     const who = document.createElement('div');
     who.className = 'msg-who';
@@ -444,11 +551,8 @@
     input.value = '';
     input.style.height = 'auto';
 
-    const esIntroMsg = esIntro(texto);
-    const msgParaApi = MODOS[modoActual] + texto;
-
-    agregarMsg('user', texto, false);
-    historial.push({ role: 'user', content: msgParaApi });
+    agregarMsg('user', texto, null);
+    historial.push({ role: 'user', content: texto });
 
     esperando = true;
     document.getElementById('sendBtn').disabled = true;
@@ -458,33 +562,28 @@
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: historial })
+        body: JSON.stringify({ messages: historial, modo: modoActual, system: PROMPTS[modoActual] })
       });
 
       const data = await res.json();
       quitarTyping();
 
-      const respuesta = data.reply || 'Uy, algo salió mal mi amor...';
+      const respuesta = data.reply || 'Ay no, se me fue el wifi mi amor. Probá en un ratito!';
       historial.push({ role: 'assistant', content: respuesta });
-      agregarMsg('momi', respuesta, esIntroMsg);
+      agregarMsg('momi', respuesta, modoActual);
     } catch(e) {
       quitarTyping();
-      agregarMsg('momi', 'Ay no, se me fue el wifi. Igual lo que te iba a decir era re fidedigno, te lo juro.', false);
+      agregarMsg('momi', 'Ay no, se me fue el wifi mi amor. Probá en un ratito!', modoActual);
     }
 
     esperando = false;
     document.getElementById('sendBtn').disabled = false;
   }
 
-  // Enter para enviar, Shift+Enter para nueva línea
   document.getElementById('input').addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      enviar();
-    }
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); enviar(); }
   });
 
-  // Auto-resize textarea
   document.getElementById('input').addEventListener('input', function() {
     this.style.height = 'auto';
     this.style.height = Math.min(this.scrollHeight, 110) + 'px';
